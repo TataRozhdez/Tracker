@@ -1,38 +1,77 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  margin: 50px 0;
+  font-size: 5vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+hr {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+.timer {
+  width: 45vw;
+}
+
+.new-timer {
+  position: relative;
+  border: 1px solid #8e8e8e;
+  width: 100%;
+  height: max-content;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;
+}
+
+.new-timer_playbtn {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;
+  width: 30px;
+  height: 30px;
+  outline: none;
+  border: none;
+  background-color: #00ff69;
+  cursor: pointer;
+}
+
+.new-timer_playbtn img {
+  width: 12px;
+  position: absolute;
+  top: 28%;
+  right: 22%;
+}
+
+input[type='text'] {
+  width: 100%;
+  border: 1px solid #8e8e8e;
+  outline: none;
+  padding: 8px 18px;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;
 }

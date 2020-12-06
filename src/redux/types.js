@@ -1,0 +1,3 @@
+export const START_TRACKER = 'START_TRACKER'
+export const PAUSE_TRACKER = 'PAUSE_TRACKER'
+export const STOP_TRACKER = 'STOP_TRACKER'
