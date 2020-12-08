@@ -6,7 +6,7 @@ export const startNewTimer = (time, name) => {
     id: `${time}`,
     name: `${name}` || `${moment(time).format('MM-DD-YYYY/HH:mm:ss')}`,
     time: time,
-    current: '',
+    current: null,
     status: 'play',
   }
 
@@ -23,7 +23,7 @@ export const pauseTimer = (timer) => {
     id: timer.id,
     name: timer.name,
     time: timer.time,
-    current: nowPause,
+    current: `${nowPause}`,
     status: 'pause',
   }
 

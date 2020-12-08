@@ -9,7 +9,7 @@ export function trackerReducer(state = initialState, action) {
     case START_TRACKER:
       return {
         ...state,
-        timers: [...state.timers, action.payload],
+        timers: [action.payload, ...state.timers],
       }
     case PAUSE_TRACKER:
       const pauseTimer = state.timers.filter((t) => t.id !== action.payload.id)

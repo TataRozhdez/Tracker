@@ -9,21 +9,20 @@ export const SingleTimer = ({ timer, pauseTimer, restoreTimer }) => {
   const [time, setTime] = useState(Date.now())
 
   const renderTimeFromNow = (t) => {
+    console.log(t)
+
     let fromNow
-    console.log(t.current, '1')
 
-    if (t.current !== '') {
-      // const dateCurrent = new Date(t.current)
-
-      console.log(t.current, '2')
-    } else {
+    if (t.current === null) {
       fromNow = +time - +t.time
+    } else {
+      return console.log(t.current, '2')
     }
+    // fromNow = +time - +t.time
 
-    // setTimeout(() => {
-    //   setTime(Date.now())
-    //   renderTimeFromNow()
-    // }, 1000)
+    setTimeout(() => {
+      setTime(Date.now())
+    }, 1000)
 
     return moment.utc(fromNow).format('HH:mm:ss')
   }
