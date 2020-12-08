@@ -1,14 +1,7 @@
-import { START_TRACKER } from './types'
+import { PAUSE_TRACKER, RESTORE_TRACKER, START_TRACKER } from './types'
 
 const initialState = {
-  timers: [
-    // {
-    //   id: '',
-    //   name: '',
-    //   time: '',
-    //   status: '', // play || pause
-    // },
-  ],
+  timers: [],
 }
 
 export function trackerReducer(state = initialState, action) {
@@ -17,6 +10,20 @@ export function trackerReducer(state = initialState, action) {
       return {
         ...state,
         timers: [...state.timers, action.payload],
+      }
+    case PAUSE_TRACKER:
+      const pauseTimer = state.timers.filter((t) => t.id !== action.payload.id)
+      return {
+        ...state,
+        timers: [...pauseTimer, action.payload],
+      }
+    case RESTORE_TRACKER:
+      const restoreTimer = state.timers.filter(
+        (t) => t.id !== action.payload.id
+      )
+      return {
+        ...state,
+        timers: [action.payload, ...restoreTimer],
       }
 
     default:

@@ -23,11 +23,23 @@ h1 {
   font-size: 5vw;
 }
 
+span {
+  margin: 0;
+  padding: 0;
+}
+
 hr {
   border: 0;
   height: 1px;
   background: #333;
   background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .timer {
@@ -53,10 +65,7 @@ hr {
   border-radius: 40px;
   width: 30px;
   height: 30px;
-  outline: none;
-  border: none;
   background-color: #00ff69;
-  cursor: pointer;
 }
 
 .new-timer_playbtn img {

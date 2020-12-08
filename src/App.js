@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import moment from 'moment'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { startNewTimer } from './redux/trackerAction'
+import { startNewTimer, pauseTimer, restoreTimer } from './redux/trackerAction'
 import playImg from './resources/play.png'
+import { SingleTimer } from './components/SingleTimer'
+
 import './App.css'
 
 const App = () => {
@@ -17,26 +18,19 @@ const App = () => {
   }
 
   const handleStartNewTimer = () => {
-    const time = moment().format('MM-DD-YYYY HH:mm:ss')
+    const time = Date.now()
 
     dispatch(startNewTimer(time, nameTimers))
     setNameTimers('')
   }
 
-  const renderTimers = useCallback(() => {
-    if (timers.length > 0) {
-      timers.map((timer) => {
-        const date = moment(timer.time, 'HH:mm:ss')
-        console.log(date)
-        const fromNow = moment(timer.time, 'hh:mm:ss').startOf()
-        return console.log(fromNow)
-      })
-    }
-  }, [timers])
+  const handlePause = (timer) => {
+    dispatch(pauseTimer(timer))
+  }
 
-  useEffect(() => {
-    renderTimers()
-  }, [renderTimers])
+  const handleStart = (timer) => {
+    dispatch(restoreTimer(timer))
+  }
 
   console.log('timers', timers)
 
@@ -56,7 +50,17 @@ const App = () => {
           </button>
         </div>
         <hr />
-        <div className='timer-body'></div>
+        <div className='timer-body'>
+          {timers.length > 0 &&
+            timers.map((t, index) => (
+              <SingleTimer
+                key={index}
+                timer={t}
+                pauseTimer={handlePause}
+                restoreTimer={handleStart}
+              />
+            ))}
+        </div>
       </div>
     </>
   )
