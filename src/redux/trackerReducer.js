@@ -1,4 +1,9 @@
-import { PAUSE_TRACKER, RESTORE_TRACKER, START_TRACKER } from './types'
+import {
+  PAUSE_TRACKER,
+  REMOVE_TRACKER,
+  RESTORE_TRACKER,
+  START_TRACKER,
+} from './types'
 
 const initialState = {
   timers: [],
@@ -24,6 +29,10 @@ export function trackerReducer(state = initialState, action) {
       return {
         ...state,
         timers: [action.payload, ...restoreTimer],
+      }
+    case REMOVE_TRACKER:
+      return {
+        timers: [...action.payload],
       }
 
     default:

@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { startNewTimer, pauseTimer, restoreTimer } from './redux/trackerAction'
+import {
+  startNewTimer,
+  pauseTimer,
+  restoreTimer,
+  removeTracker,
+} from './redux/trackerAction'
 import playImg from './resources/play.png'
 import { SingleTimer } from './components/SingleTimer'
 
@@ -32,6 +37,10 @@ const App = () => {
     dispatch(restoreTimer(timer))
   }
 
+  const handleRemove = (timers, id) => {
+    dispatch(removeTracker(timers, id))
+  }
+
   console.log('timers', timers)
 
   return (
@@ -56,8 +65,10 @@ const App = () => {
               <SingleTimer
                 key={index}
                 timer={t}
+                allTimers={timers}
                 pauseTimer={handlePause}
                 restoreTimer={handleStart}
+                removeTimer={handleRemove}
               />
             ))}
         </div>

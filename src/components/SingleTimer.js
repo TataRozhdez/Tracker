@@ -5,36 +5,33 @@ import pauseImg from '../resources/pause.svg'
 import removeImg from '../resources/remove.svg'
 import './SingleTimer.css'
 
-export const SingleTimer = ({ timer, pauseTimer, restoreTimer }) => {
+export const SingleTimer = ({
+  timer,
+  allTimers,
+  removeTimer,
+  pauseTimer,
+  restoreTimer,
+}) => {
   const [time, setTime] = useState(Date.now())
 
   const renderTimeFromNow = (t) => {
-    console.log(t)
-
-    let fromNow
-
-    if (t.current === null) {
-      fromNow = +time - +t.time
-    } else {
-      return console.log(t.current, '2')
-    }
-    // fromNow = +time - +t.time
-
     setTimeout(() => {
       setTime(Date.now())
     }, 1000)
 
-    return moment.utc(fromNow).format('HH:mm:ss')
+    return `${moment.utc(+time - +t.time).format('HH:mm:ss')}`
   }
 
   return (
     <div className='single-timer'>
       <span>{timer.name}</span>
-      {timer.status === 'play' && (
+      {timer.status === 'play' && timer.current === null && (
         <span id='current-time'>{renderTimeFromNow(timer)}</span>
       )}
-      {timer.status === 'pause' && (
-        <span id='current-time'>{timer.current}</span>
+      {timer.status === 'pause' && timer.current !== null && (
+        <span id='current-time'>
+          {moment.utc(+timer.current).format('HH:mm:ss')}
+        </span>
       )}
       <div>
         {timer.status === 'pause' && (
@@ -53,7 +50,12 @@ export const SingleTimer = ({ timer, pauseTimer, restoreTimer }) => {
             <img src={pauseImg} alt='Pause' />
           </button>
         )}
-        <button className='single-timer_btn'>
+        <button
+          className='single-timer_btn'
+          onClick={() => {
+            removeTimer(allTimers, timer.id)
+          }}
+        >
           <img src={removeImg} alt='Remove' />
         </button>
       </div>

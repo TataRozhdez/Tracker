@@ -1,4 +1,9 @@
-import { PAUSE_TRACKER, START_TRACKER } from './types'
+import {
+  PAUSE_TRACKER,
+  REMOVE_TRACKER,
+  RESTORE_TRACKER,
+  START_TRACKER,
+} from './types'
 import moment from 'moment'
 
 export const startNewTimer = (time, name) => {
@@ -17,7 +22,7 @@ export const startNewTimer = (time, name) => {
 }
 
 export const pauseTimer = (timer) => {
-  const nowPause = document.querySelector('#current-time').innerHTML
+  const nowPause = Date.now() - timer.time
 
   const pauseTime = {
     id: timer.id,
@@ -34,16 +39,27 @@ export const pauseTimer = (timer) => {
 }
 
 export const restoreTimer = (timer) => {
+  const begin = +Date.now() - +timer.current
+
   const restoreTime = {
     id: timer.id,
     name: timer.name,
-    time: timer.time,
-    current: timer.current,
+    time: begin,
+    current: null,
     status: 'play',
   }
 
   return {
-    type: PAUSE_TRACKER,
+    type: RESTORE_TRACKER,
     payload: restoreTime,
+  }
+}
+
+export const removeTracker = (timers, id) => {
+  const removedArr = timers.filter((t) => t.id !== id)
+
+  return {
+    type: REMOVE_TRACKER,
+    payload: removedArr,
   }
 }
