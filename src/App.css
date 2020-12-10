@@ -19,8 +19,8 @@ body {
 }
 
 h1 {
-  margin: 50px 0;
-  font-size: 5vw;
+  margin: 3.472vw 0;
+  font-size: 4.5vw;
 }
 
 span {
@@ -43,7 +43,9 @@ button {
 }
 
 .timer {
-  width: 45vw;
+  width: 38.889vw;
+  max-width: 39vw;
+  min-width: 290px;
 }
 
 .new-timer {

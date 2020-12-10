@@ -1,10 +1,29 @@
 import {
+  GET_LS_TRACKER,
   PAUSE_TRACKER,
   REMOVE_TRACKER,
   RESTORE_TRACKER,
   START_TRACKER,
 } from './types'
 import moment from 'moment'
+
+export const setTimers = (timersLS) => {
+  return {
+    type: GET_LS_TRACKER,
+    payload: timersLS,
+  }
+}
+
+export const setLS = (timers, dispatch) => {
+  const existArr = JSON.parse(localStorage.getItem('Tracker'))
+
+  existArr && timers.length === 0 && dispatch(setTimers(existArr))
+
+  if (timers.length > 0) {
+    existArr && localStorage.removeItem('Tracker')
+    localStorage.setItem('Tracker', JSON.stringify(timers))
+  }
+}
 
 export const startNewTimer = (time, name) => {
   const newTimer = {

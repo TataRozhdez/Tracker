@@ -1,4 +1,5 @@
 import {
+  GET_LS_TRACKER,
   PAUSE_TRACKER,
   REMOVE_TRACKER,
   RESTORE_TRACKER,
@@ -11,6 +12,10 @@ const initialState = {
 
 export function trackerReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_LS_TRACKER:
+      return {
+        timers: [...action.payload],
+      }
     case START_TRACKER:
       return {
         ...state,

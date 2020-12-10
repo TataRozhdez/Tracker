@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   startNewTimer,
   pauseTimer,
   restoreTimer,
   removeTracker,
+  setLS,
 } from './redux/trackerAction'
 import playImg from './resources/play.png'
 import { SingleTimer } from './components/SingleTimer'
@@ -26,6 +27,7 @@ const App = () => {
     const time = Date.now()
 
     dispatch(startNewTimer(time, nameTimers))
+
     setNameTimers('')
   }
 
@@ -41,7 +43,9 @@ const App = () => {
     dispatch(removeTracker(timers, id))
   }
 
-  console.log('timers', timers)
+  useEffect(() => {
+    setLS(timers, dispatch)
+  }, [dispatch, timers])
 
   return (
     <>
