@@ -9,6 +9,10 @@
   position: relative;
 }
 
+.single-timer.play {
+  color: #19c43c;
+}
+
 .single-timer hr {
   position: absolute;
   bottom: 0;

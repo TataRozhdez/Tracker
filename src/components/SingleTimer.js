@@ -23,7 +23,9 @@ export const SingleTimer = ({
   }
 
   return (
-    <div className='single-timer'>
+    <div
+      className={timer.status === 'play' ? 'single-timer play' : 'single-timer'}
+    >
       <span>{timer.name}</span>
       {timer.status === 'play' && timer.current === null && (
         <span id='current-time'>{renderTimeFromNow(timer)}</span>

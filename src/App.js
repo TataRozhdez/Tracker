@@ -44,6 +44,12 @@ const App = () => {
     dispatch(removeTracker(timers, id))
   }
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleStartNewTimer()
+    }
+  }
+
   useEffect(() => {
     setLS(timers, dispatch)
   }, [dispatch, timers])
@@ -51,7 +57,7 @@ const App = () => {
   return (
     <>
       <h1>tracker</h1>
-      <div className='timer'>
+      <div className='timer' onKeyPress={handleKeyPress}>
         <div className='new-timer'>
           <input
             type='text'
