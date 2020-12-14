@@ -12,10 +12,7 @@ const initialState = {
 }
 
 const sortingByData = (a, b) => {
-  const dataA = new Date(a.name)
-  const dataB = new Date(b.name)
-
-  return dataA - dataB
+  return +a.id - +b.id
 }
 
 export function trackerReducer(state = initialState, action) {
