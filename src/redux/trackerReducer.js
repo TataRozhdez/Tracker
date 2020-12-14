@@ -30,7 +30,9 @@ export function trackerReducer(state = initialState, action) {
 
     case PAUSE_TRACKER:
       const pauseTimer = state.timers.filter((t) => t.id !== action.payload.id)
-      const timersPause = [action.payload, ...pauseTimer].sort(sortingByData)
+      const timersPause = [action.payload, ...pauseTimer]
+        .sort(sortingByData)
+        .reverse()
 
       return {
         ...state,
@@ -41,9 +43,9 @@ export function trackerReducer(state = initialState, action) {
       const restoreTimer = state.timers.filter(
         (t) => t.id !== action.payload.id
       )
-      const timersRestore = [action.payload, ...restoreTimer].sort(
-        sortingByData
-      )
+      const timersRestore = [action.payload, ...restoreTimer]
+        .sort(sortingByData)
+        .reverse()
 
       return {
         ...state,
