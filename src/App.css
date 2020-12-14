@@ -13,7 +13,7 @@ body {
   text-align: center;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   display: flex;
   justify-content: center;
 }
@@ -50,7 +50,6 @@ button {
 
 .new-timer {
   position: relative;
-  border: 1px solid #8e8e8e;
   width: 100%;
   height: max-content;
   -webkit-border-radius: 40px;

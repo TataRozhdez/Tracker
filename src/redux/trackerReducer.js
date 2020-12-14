@@ -1,6 +1,7 @@
 import {
   GET_LS_TRACKER,
   PAUSE_TRACKER,
+  REMOVE_ALL,
   REMOVE_TRACKER,
   RESTORE_TRACKER,
   START_TRACKER,
@@ -38,6 +39,10 @@ export function trackerReducer(state = initialState, action) {
     case REMOVE_TRACKER:
       return {
         timers: [...action.payload],
+      }
+    case REMOVE_ALL:
+      return {
+        timers: [],
       }
 
     default:

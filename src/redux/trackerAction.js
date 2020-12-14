@@ -1,6 +1,7 @@
 import {
   GET_LS_TRACKER,
   PAUSE_TRACKER,
+  REMOVE_ALL,
   REMOVE_TRACKER,
   RESTORE_TRACKER,
   START_TRACKER,
@@ -75,10 +76,17 @@ export const restoreTimer = (timer) => {
 }
 
 export const removeTracker = (timers, id) => {
-  const removedArr = timers.filter((t) => t.id !== id)
+  if (timers.length === 1 && timers[0].id === id) {
+    localStorage.removeItem('Tracker')
+    return {
+      type: REMOVE_ALL,
+    }
+  } else {
+    const removedArr = timers.filter((t) => t.id !== id)
 
-  return {
-    type: REMOVE_TRACKER,
-    payload: removedArr,
+    return {
+      type: REMOVE_TRACKER,
+      payload: removedArr,
+    }
   }
 }
