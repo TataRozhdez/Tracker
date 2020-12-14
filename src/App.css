@@ -85,3 +85,9 @@ input[type='text'] {
   -moz-border-radius: 40px;
   border-radius: 40px;
 }
+
+.timers-bth-removeall {
+  background: none;
+  text-decoration: underline;
+  color: #8e8e8e;
+}

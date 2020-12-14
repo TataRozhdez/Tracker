@@ -6,6 +6,7 @@ import {
   restoreTimer,
   removeTracker,
   setLS,
+  removeAll,
 } from './redux/trackerAction'
 import playImg from './resources/play.png'
 import { SingleTimer } from './components/SingleTimer'
@@ -75,6 +76,14 @@ const App = () => {
                 removeTimer={handleRemove}
               />
             ))}
+          {timers.length > 0 && (
+            <button
+              className='timers-bth-removeall'
+              onClick={() => dispatch(removeAll())}
+            >
+              remove all timers
+            </button>
+          )}
         </div>
       </div>
     </>

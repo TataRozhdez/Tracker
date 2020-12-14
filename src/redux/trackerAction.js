@@ -90,3 +90,11 @@ export const removeTracker = (timers, id) => {
     }
   }
 }
+
+export const removeAll = () => {
+  localStorage.removeItem('Tracker')
+
+  return {
+    type: REMOVE_ALL,
+  }
+}
