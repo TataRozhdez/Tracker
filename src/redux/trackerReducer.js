@@ -17,29 +17,38 @@ export function trackerReducer(state = initialState, action) {
       return {
         timers: [...action.payload],
       }
+
     case START_TRACKER:
       return {
         ...state,
         timers: [action.payload, ...state.timers],
       }
+
     case PAUSE_TRACKER:
       const pauseTimer = state.timers.filter((t) => t.id !== action.payload.id)
+      const timersPause = [action.payload, ...pauseTimer].sort()
+
       return {
         ...state,
-        timers: [...pauseTimer, action.payload],
+        timers: [...timersPause],
       }
+
     case RESTORE_TRACKER:
       const restoreTimer = state.timers.filter(
         (t) => t.id !== action.payload.id
       )
+      const timersRestore = [action.payload, ...restoreTimer].sort()
+
       return {
         ...state,
-        timers: [action.payload, ...restoreTimer],
+        timers: [...timersRestore],
       }
+
     case REMOVE_TRACKER:
       return {
         timers: [...action.payload],
       }
+
     case REMOVE_ALL:
       return {
         timers: [],

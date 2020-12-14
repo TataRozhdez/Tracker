@@ -86,7 +86,7 @@ export const removeTracker = (timers, id) => {
 
     return {
       type: REMOVE_TRACKER,
-      payload: removedArr,
+      payload: removedArr.sort(),
     }
   }
 }
